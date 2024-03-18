@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
@@ -12,6 +13,8 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
+var version = "0.0.0"
+
 const EnvPrefix = "EXTERNAL_CHECK_"
 
 type Config struct {
@@ -20,6 +23,15 @@ type Config struct {
 }
 
 func main() {
+	var flagVersion bool
+	flag.BoolVar(&flagVersion, "v", false, "show version")
+	flag.Parse()
+
+	if flagVersion {
+		log.Printf("Version: v%s", version)
+		os.Exit(0)
+	}
+
 	config, err := initConfig()
 	if err != nil {
 		log.Printf("failed to init config: %s", err)
