@@ -13,7 +13,7 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
-var version = "0.0.0"
+var version = "0.0.1"
 
 const EnvPrefix = "EXTERNAL_CHECK_"
 
